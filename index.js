@@ -6,6 +6,7 @@ var Counter = require('passthrough-counter');
 var humanize = require('humanize-number');
 var bytes = require('bytes');
 var chalk = require('chalk');
+var moment = require('moment');
 
 /**
  * TTY check for dev format.
@@ -39,7 +40,7 @@ function dev(opts) {
   return function *logger(next) {
     // request
     var start = new Date;
-    console.log('  ' + chalk.gray('<--')
+    console.log('  ' + chalk.gray(moment().format() + ' <--')
       + ' ' + chalk.bold('%s')
       + ' ' + chalk.gray('%s'),
         this.method,
@@ -110,7 +111,7 @@ function log(ctx, start, len, err, event) {
 
   var upstream = err ? chalk.red('xxx')
     : event === 'close' ? chalk.yellow('-x-')
-    : chalk.gray('-->')
+    : chalk.gray(moment().format() + ' -->')
 
   console.log('  ' + upstream
     + ' ' + chalk.bold('%s')
