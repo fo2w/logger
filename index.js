@@ -40,7 +40,7 @@ function dev(opts) {
   return function *logger(next) {
     // request
     var start = new Date;
-    console.log(chalk.gray(moment().format() + ' <--')
+    console.log(chalk.gray(moment().format() + ' [IN ]')
       + ' ' + chalk.bold('%s')
       + ' ' + chalk.gray('%s'),
         this.method,
@@ -111,7 +111,7 @@ function log(ctx, start, len, err, event) {
 
   var upstream = err ? chalk.red('xxx')
     : event === 'close' ? chalk.yellow('-x-')
-    : chalk.gray(moment().format() + ' -->')
+    : chalk.gray(moment().format() + ' [OUT]')
 
   console.log(upstream
     + ' ' + chalk.bold('%s')
